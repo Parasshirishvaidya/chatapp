@@ -1,10 +1,10 @@
-
-
 import 'package:chatappv2/auth/auth_service.dart';
 import 'package:chatappv2/components/my_button.dart';
 import 'package:chatappv2/components/my_textfield.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chatappv2/themes/light_mode.dart';
+import 'package:flutter/widgets.dart';
 
 class LoginPage extends StatelessWidget {
   // email and pw controllers
@@ -31,6 +31,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //resizeToAvoidBottomInset: false,
       backgroundColor: Theme
           .of(context)
           .colorScheme
@@ -74,6 +75,16 @@ class LoginPage extends StatelessWidget {
 
           const SizedBox(height: 10,),
 
+          Row(
+            mainAxisAlignment:MainAxisAlignment.end,
+            children:[
+              Text('Forgot Password?', style:TextStyle(color:Colors.black )
+              ),
+             ]
+          ),
+
+          const SizedBox(height: 10,),
+
           //loginbutton
           Mybutton(
               text:"Submit",
@@ -81,6 +92,27 @@ class LoginPage extends StatelessWidget {
 
           const SizedBox(height: 10,),
 
+          Row(
+            children: [
+              Expanded(child: Divider(thickness: 0.5,
+                  color: Colors.black),),
+              Text("Or Continue with"),
+              Expanded(child: Divider(thickness: 0.5,
+                  color: Colors.black))
+            ],
+          ),
+
+          const SizedBox(height: 20),
+         GestureDetector(child:Image(image: AssetImage('images/google.jpeg'),height: 100,width: 100,),onTap:()=> AuthServices().signInWithGoogle(),),
+
+          // Row(
+          //   children: [
+          //
+          //     //Image(image: AssetImage('images/Apple-Logo.png'),height: 100,width: 100,),
+          //   ],
+          // ),
+
+          const SizedBox(height: 20),
           //register
           Text("Not a member?"),
           GestureDetector(

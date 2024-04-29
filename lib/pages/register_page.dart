@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:chatappv2/components/my_button.dart';
 import 'package:chatappv2/components/my_textfield.dart';
+import 'package:chatappv2/auth/auth_service.dart';
 
 class register_page extends StatelessWidget {
 
@@ -15,6 +16,7 @@ class register_page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //resizeToAvoidBottomInset: false,
           backgroundColor: Theme
               .of(context)
               .colorScheme
@@ -63,12 +65,27 @@ class register_page extends StatelessWidget {
                 controller: _cnfpwController,
               ),
 
-              const SizedBox(height: 10,),
+              const SizedBox(height: 20,),
 
               //loginbutton
               Mybutton(text: "Register", onTap: register,),
 
-              const SizedBox(height: 10,),
+              Row(
+                children: [
+                  Expanded(child: Divider(thickness: 0.5,
+                      color: Colors.black),),
+                  Text("Or Continue with"),
+                  Expanded(child: Divider(thickness: 0.5,
+                      color: Colors.black))
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              GestureDetector(child:Image(image: AssetImage('images/google.jpeg'),height: 100,width: 100,),onTap:()=> AuthServices().signInWithGoogle(),),
+
+
+              const SizedBox(height: 20),
 
               //signin
               Text("Already a member?"),
