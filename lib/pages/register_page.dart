@@ -8,7 +8,18 @@ class register_page extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _cnfpwController = TextEditingController();
-  void register(){}
+  void register(BuildContext context){
+    final _auth = AuthServices();
+     if(_pwController.text == _cnfpwController.text){
+       try{
+         _auth.signUpWithEmailPassword( _emailController.text, _pwController.text);
+       }catch (e){
+         showDialog(context: context, builder:(context)=>AlertDialog(
+           title: Text(e.toString()),
+         ));
+       }
+   }
+  }
   final void Function()? onTap;
 
   register_page({super.key, required this.onTap});
@@ -68,7 +79,7 @@ class register_page extends StatelessWidget {
               const SizedBox(height: 20,),
 
               //loginbutton
-              Mybutton(text: "Register", onTap: register,),
+              Mybutton(text: "Register", onTap: () => register(context),),
 
               Row(
                 children: [
