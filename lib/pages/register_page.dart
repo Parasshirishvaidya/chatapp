@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chatappv2/components/my_button.dart';
 import 'package:chatappv2/components/my_textfield.dart';
 import 'package:chatappv2/services/auth/auth_service.dart';
-
+import 'package:chatappv2/pages/chat_page.dart';
 class register_page extends StatelessWidget {
 
   final TextEditingController _emailController = TextEditingController();
@@ -59,7 +59,7 @@ class register_page extends StatelessWidget {
               //email textfield
               MyTextField(
                   hintText: "Email", obscureText: false,
-                  controller: _emailController),
+                  controller: _emailController,),
 
               const SizedBox(height: 10,),
 

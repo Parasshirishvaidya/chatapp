@@ -1,5 +1,6 @@
 import 'package:chatappv2/services/auth/auth_gate.dart';
 import 'package:chatappv2/firebase_options.dart';
+import 'package:chatappv2/themes/themeProvider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:chatappv2/themes/light_mode.dart';
@@ -7,11 +8,16 @@ import 'package:chatappv2/pages/login_page.dart';
 import 'package:chatappv2/pages/register_page.dart';
 import 'package:chatappv2/services/auth/login_or_register.dart';
 import 'package:chatappv2/services/auth/login_or_register.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (context)=> ThemeProvider(),
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: AuthGate(),
-      theme: lightmode,
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }
